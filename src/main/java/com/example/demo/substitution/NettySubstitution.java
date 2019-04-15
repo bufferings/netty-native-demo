@@ -2,7 +2,10 @@ package com.example.demo.substitution;
 
 import com.oracle.svm.core.annotate.Alias;
 import com.oracle.svm.core.annotate.RecomputeFieldValue;
+import com.oracle.svm.core.annotate.Substitute;
 import com.oracle.svm.core.annotate.TargetClass;
+import io.netty.util.internal.logging.InternalLoggerFactory;
+import io.netty.util.internal.logging.JdkLoggerFactory;
 
 import static com.oracle.svm.core.annotate.RecomputeFieldValue.Kind;
 
@@ -25,6 +28,14 @@ final class Target_io_netty_util_internal_shaded_org_jctools_util_UnsafeRefArray
   @Alias
   @RecomputeFieldValue(kind = Kind.ArrayIndexShift, declClass = Object[].class)
   public static int REF_ELEMENT_SHIFT;
+}
+
+@TargetClass(io.netty.util.internal.logging.InternalLoggerFactory.class)
+final class Target_io_netty_util_internal_logging_InternalLoggerFactory {
+  @Substitute
+  private static InternalLoggerFactory newDefaultFactory(String name) {
+    return JdkLoggerFactory.INSTANCE;
+  }
 }
 
 public class NettySubstitution {
