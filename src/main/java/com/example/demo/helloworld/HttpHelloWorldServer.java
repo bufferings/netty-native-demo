@@ -61,6 +61,7 @@ public final class HttpHelloWorldServer {
 
             System.err.println("Open your web browser and navigate to " +
                 (SSL? "https" : "http") + "://127.0.0.1:" + PORT + '/');
+            System.exit(0);
 
             ch.closeFuture().sync();
         } finally {
