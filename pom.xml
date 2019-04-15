@@ -53,6 +53,9 @@
         <artifactId>native-image-maven-plugin</artifactId>
         <version>1.0.0-rc15</version>
         <configuration>
+          <buildArgs>
+            -H:ReflectionConfigurationFiles=${project.basedir}/netty_reflection_config.json
+          </buildArgs>
           <imageName>netty-example-http</imageName>
         </configuration>
         <executions>
