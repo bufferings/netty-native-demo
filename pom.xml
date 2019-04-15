@@ -55,6 +55,7 @@
         <configuration>
           <buildArgs>
             -H:ReflectionConfigurationFiles=${project.basedir}/netty_reflection_config.json
+            --delay-class-initialization-to-runtime=io.netty.handler.codec.http.HttpObjectEncoder
           </buildArgs>
           <imageName>netty-example-http</imageName>
         </configuration>
